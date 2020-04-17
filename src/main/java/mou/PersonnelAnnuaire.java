@@ -3,8 +3,7 @@ package mou;
 import java.util.ArrayList;
 import java.util.List;
 
-public  class PersonnelAnnuaire implements Annuaire
-{
+public  class PersonnelAnnuaire {
 
      private String nomAnnuaire;
      private List<Personnel> listPersonnels = new ArrayList<Personnel>();
