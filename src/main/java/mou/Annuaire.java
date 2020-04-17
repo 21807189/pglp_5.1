@@ -1,9 +1,10 @@
 package mou;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Annuaire {
+public class Annuaire implements Serializable {
    
     private Composant racine;
 

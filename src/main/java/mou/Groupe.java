@@ -1,8 +1,9 @@
 package mou;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Groupe implements Composant, IterableComposant {
+public class Groupe implements Composant, IterableComposant, Serializable {
     
     private String nom;
     

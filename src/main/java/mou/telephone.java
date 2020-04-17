@@ -1,7 +1,8 @@
 package mou;
 
+import java.io.Serializable;
 
-public class telephone {
+public class telephone implements Serializable{
     private String information;
     private String numero;
 

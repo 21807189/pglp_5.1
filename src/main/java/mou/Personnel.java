@@ -3,9 +3,10 @@ package mou;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.awt.List;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public final class Personnel implements Composant{
+public final class Personnel implements Composant, Serializable{
 	private final String  nom;
 	private final String prenom;
 	private final java.time.LocalDate dateNaissance;

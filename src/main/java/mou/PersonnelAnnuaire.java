@@ -1,9 +1,10 @@
 package mou;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public  class PersonnelAnnuaire {
+public  class PersonnelAnnuaire implements Serializable {
 
      private String nomAnnuaire;
      private List<Personnel> listPersonnels = new ArrayList<Personnel>();
