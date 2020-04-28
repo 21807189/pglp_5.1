@@ -11,4 +11,9 @@ public abstract class DAO<T> {
 
     public abstract void delete(T obj);
 
+	public void delete(String file) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

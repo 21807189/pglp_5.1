@@ -1,7 +1,14 @@
 package mou;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 
 import org.junit.Test;
@@ -9,54 +16,80 @@ import org.junit.Test;
 public class PersonnelTest {
 
     @Test
-    public void constructeurTest() {
-        Personnel p = new Personnel.Builder("Houssein", "mouwafak",
-                LocalDate.of(1900,12,12),
-                new telephone("0600000001", "portable"))
-                .build();
-        assertEquals("houssein", p.getNom());
-        assertEquals("mouwafak", p.getPrenom());
-        assertEquals(LocalDate.of(2000, 01, 05), p.getDateNaissance());
+    public void constructeurTestA() {
+        Personnel p = new Personnel.Builder("hou", "mou",
+                LocalDate.of(1900,01,01),
+                new telephone("0700000001", "portable")).build();
+        assertEquals("hou", p.getNom());
+        assertEquals("mou", p.getPrenom());
+        assertEquals(LocalDate.of(1900,01,01), p.getDateNaissance());
 
         assertEquals(1, p.getnumTelephone().size());
-        assertEquals(new telephone("0600000001", "portable"), p.getnumTelephone().get(0));
+        assertEquals(new telephone("0700000001", "portable"),
+                p.getnumTelephone().get(0));
+    }
+/**
+ * *teste de constructeur personnel avec 2 num p et f
+ */
+    
+    @Test
+    public void constructeurTestB() {
+        Personnel p = new Personnel.Builder("hou", "mou",
+                LocalDate.of(1900,01,01),
+                new telephone("0700000002", "portable"))
+                        .addnumTelephone(new telephone("0900000001", "fixe"))
+                        .build();
+        assertEquals("hou", p.getNom());
+        assertEquals("mou", p.getPrenom());
+        assertEquals(LocalDate.of(1900,01,01), p.getDateNaissance());
+       
+
+        assertEquals(2, p.getnumTelephone().size());
+        assertEquals(new telephone("0900000001", "fixe"), p.getnumTelephone().get(1));
+        assertEquals(new telephone("0700000002", "portable"),
+                p.getnumTelephone().get(0));
     }
 
-    private void assertEquals(telephone telephone, Integer size) {
-		// TODO Auto-generated method stub
-		
-	}
+    /**
+     * meme test A avec une erreur volentairement 
+     * erreur du nom.
+     * ce qui renvoi erreur!!
+     */
+    @Test
+    public void constructeurTestC() {
+        Personnel p = new Personnel.Builder("houssein", "mou",
+                LocalDate.of(1900,01,01),
+                new telephone("0700000001", "portable")).build();
+        assertEquals("hou", p.getNom());
+        assertEquals("mou", p.getPrenom());
+        assertEquals(LocalDate.of(1900,01,01), p.getDateNaissance());
 
-	private void assertEquals(int i, int size) {
-		// TODO Auto-generated method stub
-		
-	}
+        assertEquals(1, p.getnumTelephone().size());
+        assertEquals(new telephone("0700000001", "portable"),
+                p.getnumTelephone().get(0));
+    }
+    
+/**
+ * meme teste b avec erreur volentairement
+ * erreur de numtel
+ * ce qui renvoi erreur de ce teste mais pas de B
+ */
+    @Test
+    public void constructeurTestD() {
+        Personnel p = new Personnel.Builder("hou", "mou",
+                LocalDate.of(1900,01,01),
+                new telephone("0700000023", "portable"))
+                        .addnumTelephone(new telephone("0900000001", "fixe"))
+                        .build();
+        assertEquals("hou", p.getNom());
+        assertEquals("mou", p.getPrenom());
+        assertEquals(LocalDate.of(1900,01,01), p.getDateNaissance());
+       
 
-	private void assertEquals(LocalDate of, LocalDate dateNaissance) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void assertEquals(String string, String nom) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Test
-    public void constructeurTest2() {
-        Personnel p = new Personnel.Builder("houssein", "mouwafak",
-                LocalDate.of(1900, 12, 12),
-                new telephone("0700000001", "portable"))
-                //.addnumTelephone(new telephone("0900000001", "fixe"))                
-                .build();
-        assertEquals("houssein", p.getNom());
-        assertEquals("mouwafak", p.getPrenom());
-        assertEquals(LocalDate.of(1900, 12, 12), p.getDateNaissance());
-        
-
-       assertEquals(2, p.getnumTelephone().size());
-       // assertEquals(new telephone("0100000001", "fixe"), p.getnumTelephone().get(1));
-        assertEquals(new telephone("0700000001", "portable"), p.getnumTelephone().get(0));
+        assertEquals(2, p.getnumTelephone().size());
+        assertEquals(new telephone("0900000001", "fixe"), p.getnumTelephone().get(1));
+        assertEquals(new telephone("0700000002", "portable"),
+                p.getnumTelephone().get(0));
     }
 
    

@@ -45,4 +45,9 @@ public class Annuaire implements Serializable {
         return s;
     }
 
+	public static Annuaire getInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

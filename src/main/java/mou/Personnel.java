@@ -10,13 +10,13 @@ public final class Personnel implements Composant, Serializable{
 	private final String  nom;
 	private final String prenom;
 	private final java.time.LocalDate dateNaissance;
-	private final ArrayList<Integer> numTelephone;
+	private final ArrayList<telephone> numTelephone;
 
 	public static class Builder {
 		private final String  nom;
 		private final String prenom;
 		private final java.time.LocalDate dateNaissance;
-		private ArrayList<Integer> numTelephone;
+		private ArrayList<telephone> numTelephone;
 		
 		public Builder(final String nom, final String prenom, final java.time.LocalDate dateNaissance, final telephone num) {
 			
@@ -24,10 +24,11 @@ public final class Personnel implements Composant, Serializable{
 			this.prenom = prenom;
 			this.dateNaissance = dateNaissance;
 			
-			numTelephone = new ArrayList<Integer>();
+			this.numTelephone = new ArrayList<telephone>();
+			numTelephone.add(num);
 		}
 		
-		public Builder numeroTelephone(final  ArrayList<Integer> numTelephone) {
+		public Builder numeroTelephone(final  ArrayList<telephone> numTelephone) {
 			this.numTelephone = numTelephone;
 			return this;
 		}
@@ -36,17 +37,18 @@ public final class Personnel implements Composant, Serializable{
 			return new Personnel(this);
 		}
 
-		public Builder addnumTelephone(telephone telephone) {
-			// TODO Auto-generated method stub
-			return null;
+		public Builder addnumTelephone(final telephone num) {
+            this.numTelephone.add(num);
+            return this;
+        }
 		}
-	}
+	
 	
 	private Personnel(final Builder builder) {
 		nom = builder.nom;
 		prenom = builder.prenom;
 		dateNaissance = builder.dateNaissance;
-		numTelephone = builder.numTelephone;
+		this.numTelephone = builder.numTelephone;
 	}
 
 	public ArrayList<String> hierarchie() {
@@ -66,7 +68,7 @@ public final class Personnel implements Composant, Serializable{
 	    public LocalDate getDateNaissance() {
 	        return dateNaissance;
 	    }
-	    public java.util.List<Integer> getnumTelephone() {
+	    public java.util.List<telephone> getnumTelephone() {
 	        return Collections.unmodifiableList(numTelephone);
 	    }
 

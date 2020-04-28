@@ -49,7 +49,7 @@ public final class Main {
           g3.add(g1);
 
           Annuaire a = new Annuaire(g3);
-          System.out.println(a.hierachie());
+         // System.out.println(a.hierachie());
           System.out.println(a.groupe());
       }
     }
